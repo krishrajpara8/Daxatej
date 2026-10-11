@@ -312,14 +312,13 @@
   // TRADE DESK & SUPABASE CONFIGURATION
   // =========================================================================
   const TRADE_CONFIG = {
-    // Official Daxatej WhatsApp Number (country code + number, e.g., '91XXXXXXXXXX')
-    whatsappNumber: '',
+    // Official Daxatej WhatsApp Number
+    whatsappNumber: '917048632009',
     tradeEmail: 'daxatej.global@gmail.com',
 
-    // Supabase Configuration (Optional - for storing incoming buyer leads)
-    // Create a free project at app.supabase.com and paste URL & anon key here
-    supabaseUrl: '',
-    supabaseAnonKey: ''
+    // Supabase Configuration
+    supabaseUrl: 'https://bxfayedljmftaddgpqfe.supabase.co',
+    supabaseAnonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ4ZmF5ZWRsam1mdGFkZGdwcWZlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE3NDEzMzEsImV4cCI6MjEwNzMxNzMzMX0.3rLzXwDiXPaFkdq3aSnXLemrvT_Fn9SF5LGkmY8mSdM'
   };
 
   const elements = {
