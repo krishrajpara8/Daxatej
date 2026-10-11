@@ -1,7 +1,7 @@
 /**
  * Daxatej Global - International Import & Export Corporate Application
  * Headquarters: Rajkot, Gujarat (PIN: 360410), India
- * Trade Desk: daxxaglobal11@gmail.com
+ * Trade Desk: daxatej.global@gmail.com
  *
  * Strict Compliance:
  * - Pure vanilla JavaScript (zero dependencies)
@@ -549,7 +549,7 @@
 
   // Copy email utility
   window.copyTradeEmail = function () {
-    const email = 'daxxaglobal11@gmail.com';
+    const email = 'daxatej.global@gmail.com';
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(email)
         .then(() => showToast('Email copied to clipboard: ' + email))
@@ -609,7 +609,7 @@
     const subject = encodeURIComponent(`Commercial Export RFQ: ${data.product} - ${data.company || data.buyerName}`);
     const bodyText = [
       `To: Daxatej Global - Export Trade Desk (Rajkot, Gujarat, India)`,
-      `Email: daxxaglobal11@gmail.com`,
+      `Email: daxatej.global@gmail.com`,
       `----------------------------------------------------------------------`,
       `COMMERCIAL EXPORT QUOTATION INQUIRY`,
       `----------------------------------------------------------------------`,
@@ -629,7 +629,7 @@
       `Sent via Daxatej Global Corporate Trade Portal`
     ].join('\n');
 
-    const mailtoUrl = `mailto:daxxaglobal11@gmail.com?subject=${subject}&body=${encodeURIComponent(bodyText)}`;
+    const mailtoUrl = `mailto:daxatej.global@gmail.com?subject=${subject}&body=${encodeURIComponent(bodyText)}`;
     window.location.href = mailtoUrl;
     showToast('Drafting official quotation email...');
   }
