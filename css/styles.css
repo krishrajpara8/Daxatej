@@ -470,21 +470,17 @@ p:last-child {
 }
 
 .brand-icon-wrap {
-  width: 44px;
-  height: 44px;
-  border-radius: 11px;
+  width: 48px;
+  height: 48px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  transition: transform var(--transition-fast);
 }
 
-.brand-icon-wrap:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(216, 248, 55, 0.35);
+.brand:hover .brand-icon-wrap {
+  transform: translateY(-1px) scale(1.04);
 }
 
 .brand-icon-img {
@@ -492,6 +488,12 @@ p:last-child {
   height: 100%;
   display: block;
   object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.1));
+  transition: filter var(--transition-fast);
+}
+
+.brand:hover .brand-icon-img {
+  filter: drop-shadow(0 4px 14px rgba(212, 175, 55, 0.4));
 }
 
 .brand-monogram {
@@ -530,13 +532,13 @@ p:last-child {
 }
 
 .brand-slash {
-  color: #8CC200;
+  color: #C59B27;
   font-weight: 800;
   margin: 0 1px;
 }
 
 .brand-title-accent {
-  color: var(--color-accent-bronze);
+  color: #0E2A47;
   font-weight: 700;
 }
 
@@ -555,11 +557,11 @@ p:last-child {
 }
 
 .site-footer .brand-slash {
-  color: #DCFC57;
+  color: #F0CF65;
 }
 
 .site-footer .brand-title-accent {
-  color: #E2E8DF;
+  color: #E5C365;
 }
 
 .site-footer .brand-subtitle {
@@ -1972,9 +1974,8 @@ textarea.input-control {
   }
 
   .brand-icon-wrap {
-    width: 36px;
-    height: 36px;
-    border-radius: 9px;
+    width: 40px;
+    height: 40px;
   }
 
   .brand-monogram {
@@ -2268,9 +2269,8 @@ textarea.input-control {
 /* Compact Mobile Screens (<= 480px) */
 @media (max-width: 480px) {
   .brand-icon-wrap {
-    width: 34px;
-    height: 34px;
-    border-radius: 8px;
+    width: 36px;
+    height: 36px;
   }
 
   .brand-title {
