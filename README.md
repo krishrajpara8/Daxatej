@@ -26,9 +26,12 @@ An authentic, human-designed corporate website for **Daxatej Global**—an inter
 4. **Zero AI Fluff / Authentic Commercial Trade Content**:
    - Real products:
      - **Sodium Starch Glycolate (SSG)**: USP/NF, BP, EP, IP Type A & B superdisintegrant.
+     - **Croscarmellous Sodium**: Fast-acting tablet & capsule superdisintegrant.
+     - **Ready Mix. Tablet Coating Polymers**: Pre-formulated film coating systems (Moisture Barrier, Enteric & Immediate Release).
+     - **Methacrylic Polymers (L-100, L-100-55, L30 D)**: Precision enteric coating polymers and 100% aqueous dispersions.
      - **Colloidal Silicon Dioxide**: USP/NF, BP, EP, Food E551 glidant.
      - **Microcrystalline Cellulose (MCC)**: PH 101, PH 102, PH 112.
-     - **Croscarmellose Sodium & Magnesium Stearate** (Vegetable Grade).
+     - **Magnesium Stearate**: Vegetable Grade lubricant.
      - **Sortex Indian Spices**: Saurashtra Cumin Seeds (Jeera), Gondal Coriander Seeds (Dhania), High-Curcumin Turmeric, Dried Red Chilli (Teja/S17).
      - **Specialty Chemicals**: Containerized bulk process chemicals.
    - Real Gujarat maritime gateways: Mundra Port (APSEZ), Deendayal Port (Kandla), Pipavav Port.

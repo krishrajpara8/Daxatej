@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 48" width="280" height="48" fill="none">
+  <!-- Brand Squircle Icon -->
+  <defs>
+    <linearGradient id="logoIconGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#DCFC57" />
+      <stop offset="100%" stop-color="#C8F224" />
+    </linearGradient>
+  </defs>
+
+  <rect x="2" y="2" width="44" height="44" rx="11" fill="url(#logoIconGrad)" stroke="#BDE817" stroke-width="0.75" />
+
+  <!-- D Monogram -->
+  <path d="M16.5 13H24C29.8 13 34.5 17.8 34.5 24C34.5 30.2 29.8 35 24 35H16.5V13Z" 
+        stroke="#FFFFFF" 
+        stroke-width="2.7" 
+        stroke-linecap="round" 
+        stroke-linejoin="round" />
+  
+  <path d="M16.5 35C23 33.5 30 29.5 34.5 24" 
+        stroke="#FFFFFF" 
+        stroke-width="2.2" 
+        stroke-linecap="round" 
+        stroke-linejoin="round" />
+
+  <!-- Logotype DAXATEJ / GLOBAL -->
+  <text x="58" y="24" font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-size="18" font-weight="800" fill="#141715" letter-spacing="-0.02em">DAXATEJ</text>
+  <text x="149" y="24" font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-size="18" font-weight="800" fill="#A8DC08" letter-spacing="-0.01em">/</text>
+  <text x="160" y="24" font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-size="18" font-weight="800" fill="#141715" letter-spacing="-0.02em">GLOBAL</text>
+
+  <!-- Tagline / Descriptor -->
+  <text x="59" y="38" font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="600" fill="#666C64" letter-spacing="0.08em">EXPORT • IMPORT • GLOBAL COMMERCE</text>
+</svg>

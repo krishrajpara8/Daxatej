@@ -160,8 +160,8 @@
     },
     {
       id: 'croscarmellose',
-      name: 'Croscarmellose Sodium',
-      latinOrAlt: 'Cross-linked Sodium Carboxymethylcellulose',
+      name: 'Croscarmellous Sodium',
+      latinOrAlt: 'Croscarmellose Sodium / Cross-linked Na CMC',
       category: 'pharma',
       casOrHs: 'CAS: 74811-65-7',
       grade: 'USP-NF / BP / EP / IP',
@@ -175,6 +175,92 @@
         { label: 'Loss on Drying', value: 'NMT 10.0%' },
         { label: 'Sodium Chloride Content', value: 'NMT 0.5%' },
         { label: 'Settling Volume', value: '10.0 to 17.0 mL' }
+      ]
+    },
+    {
+      id: 'ready-mix-coating',
+      name: 'Ready Mix. Tablet Coating Polymers',
+      latinOrAlt: 'Complete Film Coating Systems (Moisture Barrier / Enteric / Immediate Release)',
+      category: 'pharma',
+      casOrHs: 'HS Code: 39123900',
+      grade: 'USP-NF / BP / EP / IP Compliant',
+      application: 'Pre-formulated Film Coating for Tablets, Pellets & Caplets',
+      packaging: '20 kg / 25 kg Triple-Laminated Moisture-Proof Bags in Fiber Drums',
+      image: 'images/ready_mix_coating_polymers.jpg',
+      synopsis: 'State-of-the-art pre-blended dry ready-mix coating formulations combining film-forming polymers, plasticizers, anti-tacking glidants, and stable pigments. Reconstitutes in water within 45 minutes for high-speed spray application with zero logo bridging or edge chipping.',
+      specifications: [
+        { label: 'Coating System Type', value: 'Immediate Release, Moisture Barrier, Enteric & Flavored' },
+        { label: 'Reconstitution Time', value: '35 – 45 minutes in purified water' },
+        { label: 'Suspension Solids Content', value: '11% to 20% (w/w) operational solids' },
+        { label: 'Film Tensile Strength', value: '> 8.5 MPa (High mechanical protection)' },
+        { label: 'Color Uniformity (ΔE)', value: '< 0.8 across continuous production batches' },
+        { label: 'Heavy Metals (as Pb)', value: 'NMT 20 ppm' },
+        { label: 'Microbial Limits', value: 'TAMC < 1000 CFU/g, TYMC < 100 CFU/g, E. Coli Absent' }
+      ]
+    },
+    {
+      id: 'l-100',
+      name: 'L-100',
+      latinOrAlt: 'Methacrylic Acid Copolymer Type A (1:1)',
+      category: 'pharma',
+      casOrHs: 'CAS: 25086-15-1',
+      grade: 'USP-NF (Type A) / Ph. Eur. (1:1) / IP',
+      application: 'Enteric Film Coating Soluble at pH ≥ 6.0 (Mid-to-Lower Intestinal Release)',
+      packaging: '10 kg / 20 kg Hermetic Fiber Drums with Double PE Liners',
+      image: 'images/methacrylic_coating_polymers.jpg',
+      synopsis: 'Solid high-purity anionic enteric copolymer of methacrylic acid and methyl methacrylate (1:1 ratio). Insoluble in gastric fluid; dissolves at pH 6.0 and above to target drug release precisely to the jejunum and ileum.',
+      specifications: [
+        { label: 'Chemical Name', value: 'Poly(methacrylic acid-co-methyl methacrylate) 1:1' },
+        { label: 'Dissolution pH Threshold', value: 'Soluble at pH ≥ 6.0 (Mid-to-lower bowel release)' },
+        { label: 'Assay (Methacrylic Acid)', value: '46.0% to 50.6% on dried substance' },
+        { label: 'Physical Form', value: 'White free-flowing fine powder' },
+        { label: 'Loss on Drying', value: 'NMT 5.0% (at 110°C for 6 hours)' },
+        { label: 'Residue on Ignition', value: 'NMT 0.1%' },
+        { label: 'Heavy Metals (as Pb)', value: 'NMT 20 ppm' },
+        { label: 'Apparent Viscosity', value: '50 to 200 mPa·s' }
+      ]
+    },
+    {
+      id: 'l-100-55',
+      name: 'L-100-55',
+      latinOrAlt: 'Methacrylic Acid Copolymer Type C (1:1) Powder',
+      category: 'pharma',
+      casOrHs: 'CAS: 25212-88-8',
+      grade: 'USP-NF (Type C) / Ph. Eur. (Type A) / IP',
+      application: 'Enteric Film Coating Soluble at pH ≥ 5.5 (Duodenal & Upper Bowel Release)',
+      packaging: '10 kg / 20 kg Moisture-Proof Fiber Drums with PE Liners',
+      image: 'images/methacrylic_coating_polymers.jpg',
+      synopsis: 'Redispersible dry powder form of methacrylic acid - ethyl acrylate copolymer (1:1). Dissolves rapidly at pH 5.5 and above in the duodenum. Delivers reliable gastro-resistance, acid protection, and ambient moisture shielding.',
+      specifications: [
+        { label: 'Chemical Name', value: 'Poly(methacrylic acid-co-ethyl acrylate) 1:1' },
+        { label: 'Dissolution pH Threshold', value: 'Soluble at pH ≥ 5.5 (Duodenal targeted release)' },
+        { label: 'Assay (Methacrylic Acid)', value: '46.0% to 50.6% on dried substance' },
+        { label: 'Physical Form', value: 'White fine powder with faint characteristic odor' },
+        { label: 'Loss on Drying', value: 'NMT 5.0% (at 105°C for 2 hours)' },
+        { label: 'Residue on Ignition', value: 'NMT 0.1%' },
+        { label: 'Heavy Metals (as Pb)', value: 'NMT 20 ppm' },
+        { label: 'Redispersibility', value: 'Easily forms stable aqueous dispersion with plasticizers' }
+      ]
+    },
+    {
+      id: 'l30-d',
+      name: 'L30 D',
+      latinOrAlt: 'Methacrylic Acid Copolymer 30% Aqueous Dispersion (L 30 D-55)',
+      category: 'pharma',
+      casOrHs: 'CAS: 25212-88-8',
+      grade: 'USP-NF (Type C Dispersion) / Ph. Eur. / IP',
+      application: '100% Aqueous Enteric Coating Dispersion Soluble at pH ≥ 5.5',
+      packaging: '25 kg HDPE Carboys / 200 kg Drums / 1000 kg IBC Containers',
+      image: 'images/methacrylic_coating_polymers.jpg',
+      synopsis: 'Ready-to-use 30% aqueous colloidal dispersion of methacrylic acid - ethyl acrylate copolymer (1:1). Eliminates flammable organic solvents, simplifies pan coating operations, and delivers reliable enteric protection soluble at pH ≥ 5.5.',
+      specifications: [
+        { label: 'Dry Polymer Solids Content', value: '28.5% to 31.5% (w/w)' },
+        { label: 'Dissolution pH Threshold', value: 'Soluble at pH ≥ 5.5' },
+        { label: 'Apparent Viscosity', value: 'NMT 15 mPa·s (at 20°C)' },
+        { label: 'pH Value', value: '2.0 to 3.0' },
+        { label: 'Coagulum Content', value: 'NMT 1000 mg / kg' },
+        { label: 'Heavy Metals (as Pb)', value: 'NMT 20 ppm' },
+        { label: 'Eco-Advantage', value: '100% Aqueous, Zero VOC, non-flammable processing' }
       ]
     },
     {

@@ -469,6 +469,31 @@ p:last-child {
   text-decoration: none;
 }
 
+.brand-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 11px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.brand-icon-wrap:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(216, 248, 55, 0.35);
+}
+
+.brand-icon-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
 .brand-monogram {
   width: 42px;
   height: 42px;
@@ -496,14 +521,23 @@ p:last-child {
 .brand-title {
   font-size: 1.15rem;
   font-weight: 800;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   color: var(--color-text-main);
   line-height: 1.1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.brand-slash {
+  color: #8CC200;
+  font-weight: 800;
+  margin: 0 1px;
 }
 
 .brand-title-accent {
   color: var(--color-accent-bronze);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .brand-subtitle {
@@ -513,6 +547,23 @@ p:last-child {
   color: var(--color-text-muted);
   font-weight: 600;
   margin-top: 2px;
+}
+
+/* Footer brand enhancements */
+.site-footer .brand-title {
+  color: #FFFFFF;
+}
+
+.site-footer .brand-slash {
+  color: #DCFC57;
+}
+
+.site-footer .brand-title-accent {
+  color: #E2E8DF;
+}
+
+.site-footer .brand-subtitle {
+  color: #A3ABA1;
 }
 
 /* Navigation Links */
@@ -1920,6 +1971,12 @@ textarea.input-control {
     font-size: 0.65rem;
   }
 
+  .brand-icon-wrap {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+  }
+
   .brand-monogram {
     width: 36px;
     height: 36px;
@@ -2210,6 +2267,21 @@ textarea.input-control {
 
 /* Compact Mobile Screens (<= 480px) */
 @media (max-width: 480px) {
+  .brand-icon-wrap {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+  }
+
+  .brand-title {
+    font-size: 0.98rem;
+  }
+
+  .brand-subtitle {
+    font-size: 0.6rem;
+    letter-spacing: 0.05em;
+  }
+
   .hero-guarantees {
     grid-template-columns: 1fr;
     gap: var(--space-xs);
