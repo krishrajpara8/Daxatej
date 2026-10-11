@@ -2312,3 +2312,258 @@ textarea.input-control {
   }
 }
 
+/* ==========================================================================
+   12. Floating Dual-Channel Contact Widget (WhatsApp + Email)
+   ========================================================================== */
+.floating-trade-widget {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  font-family: var(--font-sans);
+}
+
+.floating-trade-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #141715;
+  color: #FFFFFF;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 999px;
+  padding: 10px 18px 10px 14px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.22);
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+  position: relative;
+}
+
+.floating-trade-trigger:hover {
+  transform: translateY(-2px);
+  background-color: #1E2320;
+  box-shadow: 0 6px 24px rgba(212, 175, 55, 0.3);
+}
+
+.trigger-pulse {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #25D366;
+  opacity: 0.75;
+  animation: pulsePing 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes pulsePing {
+  75%, 100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.trigger-icon.wa-icon {
+  width: 20px;
+  height: 20px;
+  color: #25D366;
+  flex-shrink: 0;
+}
+
+.trigger-label {
+  letter-spacing: -0.01em;
+}
+
+.floating-trade-panel {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  right: 0;
+  width: 320px;
+  background-color: #FFFFFF;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-subtle);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px) scale(0.96);
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
+  pointer-events: none;
+}
+
+.floating-trade-panel.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.floating-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background-color: #141715;
+  color: #FFFFFF;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.floating-brand-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.floating-brand-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.floating-panel-title {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.floating-panel-status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  color: #A3ACA5;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #25D366;
+}
+
+.floating-panel-close {
+  background: none;
+  border: none;
+  color: #A3ACA5;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+  transition: color var(--transition-fast);
+}
+
+.floating-panel-close:hover {
+  color: #FFFFFF;
+}
+
+.floating-panel-body {
+  padding: 16px;
+  background-color: #FAFAFA;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.floating-panel-intro {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  line-height: 1.45;
+  margin-bottom: 2px;
+}
+
+.floating-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  border: 1px solid var(--color-border-subtle);
+  background-color: #FFFFFF;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.floating-action-btn:hover {
+  transform: translateX(2px);
+  border-color: var(--color-border-dark);
+}
+
+.floating-action-btn .action-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.floating-action-btn.wa-action-btn {
+  background-color: #EDF9F0;
+  border-color: #A8E5B8;
+  color: #128C7E;
+}
+
+.floating-action-btn.wa-action-btn:hover {
+  background-color: #E2F5E7;
+  border-color: #25D366;
+}
+
+.floating-action-btn.wa-action-btn .action-icon {
+  color: #25D366;
+}
+
+.floating-action-btn.email-action-btn {
+  color: var(--color-text-main);
+}
+
+.floating-action-btn.email-action-btn .action-icon {
+  color: var(--color-accent-forest);
+}
+
+.floating-action-btn.rfq-action-btn {
+  background-color: #F8F5F0;
+  border-color: #E8DEC8;
+  color: var(--color-text-main);
+}
+
+.floating-action-btn.rfq-action-btn .action-icon {
+  color: #C59B27;
+}
+
+.action-btn-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.action-btn-text strong {
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.action-btn-text span {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 480px) {
+  .floating-trade-widget {
+    bottom: 16px;
+    right: 16px;
+  }
+  
+  .floating-trade-panel {
+    width: calc(100vw - 32px);
+    right: -6px;
+  }
+  
+  .floating-trade-trigger .trigger-label {
+    display: none;
+  }
+  
+  .floating-trade-trigger {
+    padding: 12px;
+    border-radius: 50%;
+  }
+}
+

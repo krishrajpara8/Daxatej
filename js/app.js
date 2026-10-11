@@ -308,6 +308,20 @@
   let currentCategory = 'all';
   let currentSearchQuery = '';
 
+  // =========================================================================
+  // TRADE DESK & SUPABASE CONFIGURATION
+  // =========================================================================
+  const TRADE_CONFIG = {
+    // Official Daxatej WhatsApp Number (country code + number, e.g., '91XXXXXXXXXX')
+    whatsappNumber: '',
+    tradeEmail: 'daxatej.global@gmail.com',
+
+    // Supabase Configuration (Optional - for storing incoming buyer leads)
+    // Create a free project at app.supabase.com and paste URL & anon key here
+    supabaseUrl: '',
+    supabaseAnonKey: ''
+  };
+
   const elements = {
     productGrid: document.getElementById('productGrid'),
     searchInput: document.getElementById('productSearchInput'),
@@ -325,7 +339,13 @@
     navLinks: document.getElementById('navLinks'),
     navBackdrop: document.getElementById('navBackdrop'),
     toastNotice: document.getElementById('toastNotice'),
-    toastText: document.getElementById('toastText')
+    toastText: document.getElementById('toastText'),
+    floatingTradeWidget: document.getElementById('floatingTradeWidget'),
+    floatingTradeTrigger: document.getElementById('floatingTradeTrigger'),
+    floatingTradePanel: document.getElementById('floatingTradePanel'),
+    floatingCloseBtn: document.getElementById('floatingCloseBtn'),
+    floatingRfqLink: document.getElementById('floatingRfqLink'),
+    floatingWhatsAppLink: document.getElementById('floatingWhatsAppLink')
   };
 
   // Populate RFQ product dropdown
@@ -600,16 +620,55 @@
     return true;
   }
 
+  // Save inquiry lead asynchronously to Supabase database (if configured)
+  async function saveInquiryToSupabase(data, channel) {
+    if (!TRADE_CONFIG.supabaseUrl || !TRADE_CONFIG.supabaseAnonKey) {
+      return;
+    }
+    try {
+      const endpoint = `${TRADE_CONFIG.supabaseUrl.replace(/\/$/, '')}/rest/v1/inquiries`;
+      const payload = {
+        buyer_name: data.buyerName,
+        company: data.company || null,
+        email: data.email,
+        phone: data.phone || null,
+        product: data.product,
+        quantity: data.quantity || null,
+        incoterm: data.incoterm || null,
+        destination_port: data.destination || null,
+        notes: data.notes || null,
+        channel: channel
+      };
+
+      await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': TRADE_CONFIG.supabaseAnonKey,
+          'Authorization': `Bearer ${TRADE_CONFIG.supabaseAnonKey}`,
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify(payload)
+      });
+      console.info('Inquiry lead successfully recorded in Supabase.');
+    } catch (err) {
+      console.warn('Could not record lead in Supabase:', err);
+    }
+  }
+
   // A. Generate Formal Email RFQ
-  function handleEmailRfq(e) {
+  async function handleEmailRfq(e) {
     if (e) e.preventDefault();
     const data = collectRfqFormData();
     if (!validateRfqData(data)) return;
 
+    showToast('Saving inquiry and drafting official quotation email...');
+    await saveInquiryToSupabase(data, 'email');
+
     const subject = encodeURIComponent(`Commercial Export RFQ: ${data.product} - ${data.company || data.buyerName}`);
     const bodyText = [
       `To: Daxatej Global - Export Trade Desk (Rajkot, Gujarat, India)`,
-      `Email: daxatej.global@gmail.com`,
+      `Email: ${TRADE_CONFIG.tradeEmail}`,
       `----------------------------------------------------------------------`,
       `COMMERCIAL EXPORT QUOTATION INQUIRY`,
       `----------------------------------------------------------------------`,
@@ -619,7 +678,7 @@
       `Buyer Phone / Tel:    ${data.phone || 'Not Specified'}`,
       ``,
       `Requested Product:    ${data.product}`,
-      `Target Quantity:      ${data.quantity}`,
+      `Target Quantity:      ${data.quantity || 'Consignment Quote'}`,
       `Preferred IncoTerm:   ${data.incoterm}`,
       `Discharge / Sea Port: ${data.destination || 'To be specified'}`,
       ``,
@@ -629,32 +688,38 @@
       `Sent via Daxatej Global Corporate Trade Portal`
     ].join('\n');
 
-    const mailtoUrl = `mailto:daxatej.global@gmail.com?subject=${subject}&body=${encodeURIComponent(bodyText)}`;
+    const mailtoUrl = `mailto:${TRADE_CONFIG.tradeEmail}?subject=${subject}&body=${encodeURIComponent(bodyText)}`;
     window.location.href = mailtoUrl;
-    showToast('Drafting official quotation email...');
   }
 
   // B. Generate Instant WhatsApp RFQ
-  function handleWhatsAppRfq(e) {
+  async function handleWhatsAppRfq(e) {
     if (e) e.preventDefault();
     const data = collectRfqFormData();
     if (!validateRfqData(data)) return;
+
+    showToast('Saving inquiry and redirecting to WhatsApp...');
+    await saveInquiryToSupabase(data, 'whatsapp');
 
     const message = [
       `*EXPORT INQUIRY - DAXATEJ GLOBAL*`,
       `• *Buyer:* ${data.buyerName} (${data.company || 'Direct Importer'})`,
       `• *Email:* ${data.email}`,
+      data.phone ? `• *Phone:* ${data.phone}` : '',
       `• *Product:* ${data.product}`,
-      `• *Quantity:* ${data.quantity}`,
+      `• *Quantity:* ${data.quantity || 'Consignment Quote'}`,
       `• *IncoTerm:* ${data.incoterm}`,
       `• *Destination Port:* ${data.destination || 'Origin Quote Requested'}`,
       data.notes ? `• *Notes:* ${data.notes}` : ''
     ].filter(Boolean).join('\n');
 
     // Official WhatsApp dispatch link
-    const waUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+    const phone = TRADE_CONFIG.whatsappNumber ? TRADE_CONFIG.whatsappNumber.replace(/[^0-9]/g, '') : '';
+    const waUrl = phone 
+      ? `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
+      : `https://wa.me/?text=${encodeURIComponent(message)}`;
+
     window.open(waUrl, '_blank', 'noopener,noreferrer');
-    showToast('Redirecting to WhatsApp inquiry desk...');
   }
 
   // =========================================================================
@@ -713,6 +778,46 @@
     }
     if (elements.rfqWhatsAppBtn) {
       elements.rfqWhatsAppBtn.addEventListener('click', handleWhatsAppRfq);
+    }
+
+    // Floating Dual-Channel Contact Widget
+    if (elements.floatingTradeTrigger && elements.floatingTradePanel) {
+      function toggleFloatingPanel(open) {
+        const isOpen = typeof open === 'boolean' ? open : !elements.floatingTradePanel.classList.contains('active');
+        elements.floatingTradePanel.classList.toggle('active', isOpen);
+        elements.floatingTradePanel.setAttribute('aria-hidden', !isOpen);
+      }
+
+      elements.floatingTradeTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleFloatingPanel();
+      });
+
+      if (elements.floatingCloseBtn) {
+        elements.floatingCloseBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          toggleFloatingPanel(false);
+        });
+      }
+
+      if (elements.floatingRfqLink) {
+        elements.floatingRfqLink.addEventListener('click', () => {
+          toggleFloatingPanel(false);
+        });
+      }
+
+      // Close when clicking anywhere outside
+      document.addEventListener('click', (e) => {
+        if (elements.floatingTradeWidget && !elements.floatingTradeWidget.contains(e.target)) {
+          toggleFloatingPanel(false);
+        }
+      });
+
+      // Update floating WhatsApp link if phone number is configured
+      if (elements.floatingWhatsAppLink && TRADE_CONFIG.whatsappNumber) {
+        const phone = TRADE_CONFIG.whatsappNumber.replace(/[^0-9]/g, '');
+        elements.floatingWhatsAppLink.href = `https://wa.me/${phone}?text=${encodeURIComponent('Hello Daxatej Global, I would like to inquire about your products and export terms.')}`;
+      }
     }
 
     // Mobile navigation toggle with backdrop & body scroll lock

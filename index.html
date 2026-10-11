@@ -1148,6 +1148,70 @@
   </div>
 
   <!-- =========================================================================
+       12. FLOATING DUAL-CHANNEL CONTACT WIDGET (WhatsApp + Email)
+       ========================================================================= -->
+  <div class="floating-trade-widget" id="floatingTradeWidget">
+    <div class="floating-trade-panel" id="floatingTradePanel" aria-hidden="true">
+      <div class="floating-panel-header">
+        <div class="floating-brand-info">
+          <img src="images/brand_icon.png" alt="Daxatej Global Exports" class="floating-brand-icon" width="28" height="28">
+          <div>
+            <span class="floating-panel-title">Daxatej Trade Desk</span>
+            <span class="floating-panel-status"><span class="status-dot"></span> Online for Global RFQs</span>
+          </div>
+        </div>
+        <button type="button" class="floating-panel-close" id="floatingCloseBtn" aria-label="Close Contact Panel">&times;</button>
+      </div>
+
+      <div class="floating-panel-body">
+        <p class="floating-panel-intro">Connect directly with our export desk via WhatsApp or official trade email for immediate FOB / CIF quotations:</p>
+        
+        <a href="https://wa.me/?text=Hello%20Daxatej%20Global%2C%20I%20would%20like%20to%20inquire%20about%20your%20products." target="_blank" rel="noopener noreferrer" class="floating-action-btn wa-action-btn" id="floatingWhatsAppLink">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="action-icon">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+          </svg>
+          <div class="action-btn-text">
+            <strong>Chat on WhatsApp</strong>
+            <span>Direct Commercial Trade Line</span>
+          </div>
+        </a>
+
+        <a href="mailto:daxatej.global@gmail.com?subject=International%20Trade%20Inquiry%20-%20Daxatej%20Global" class="floating-action-btn email-action-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="action-icon">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          <div class="action-btn-text">
+            <strong>Send Trade Email</strong>
+            <span>daxatej.global@gmail.com</span>
+          </div>
+        </a>
+
+        <a href="#rfq" class="floating-action-btn rfq-action-btn" id="floatingRfqLink">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="action-icon">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+          </svg>
+          <div class="action-btn-text">
+            <strong>Submit Formal RFQ</strong>
+            <span>Detailed IncoTerms &amp; Specs Form</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <button type="button" class="floating-trade-trigger" id="floatingTradeTrigger" aria-label="Open Instant Trade Inquiry Panel">
+      <span class="trigger-pulse" aria-hidden="true"></span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="trigger-icon wa-icon">
+        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+      </svg>
+      <span class="trigger-label">Quick Contact</span>
+    </button>
+  </div>
+
+  <!-- =========================================================================
        13. TOAST NOTIFICATION
        ========================================================================= -->
   <div class="toast-notice" id="toastNotice" role="status" aria-live="polite">

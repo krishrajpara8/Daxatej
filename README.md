@@ -36,7 +36,8 @@ An authentic, human-designed corporate website for **Daxatej Global**—an inter
      - **Specialty Chemicals**: Containerized bulk process chemicals.
    - Real Gujarat maritime gateways: Mundra Port (APSEZ), Deendayal Port (Kandla), Pipavav Port.
    - IncoTerms 2020 matrix: FOB Mundra, CIF Destination, CFR, EXW Rajkot.
-   - Dual RFQ engine: Instant formal email drafting (`daxatej.global@gmail.com`) and formatted WhatsApp dispatch.
+   - Dual RFQ engine: Instant formal email drafting (`daxatej.global@gmail.com`), formatted WhatsApp dispatch, and floating 24/7 trade desk widget.
+   - Supabase Lead Database Ready: Asynchronously logs all incoming trade inquiries before dispatching to WhatsApp or Email.
    - Technical monograph modals with full physicochemical laboratory limits.
 
 5. **Official Brand Identity & 3D Logo Suite**:
