@@ -318,7 +318,13 @@
 
     // Supabase Configuration
     supabaseUrl: 'https://bxfayedljmftaddgpqfe.supabase.co',
-    supabaseAnonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ4ZmF5ZWRsam1mdGFkZGdwcWZlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE3NDEzMzEsImV4cCI6MjEwNzMxNzMzMX0.3rLzXwDiXPaFkdq3aSnXLemrvT_Fn9SF5LGkmY8mSdM'
+    supabaseAnonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ4ZmF5ZWRsam1mdGFkZGdwcWZlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE3NDEzMzEsImV4cCI6MjEwNzMxNzMzMX0.3rLzXwDiXPaFkdq3aSnXLemrvT_Fn9SF5LGkmY8mSdM',
+
+    // EmailJS Configuration (Automated Customer Thank You & Team Notifications)
+    emailjsPublicKey: '',          // e.g., 'your_public_key'
+    emailjsServiceId: '',          // e.g., 'service_daxatej'
+    emailjsCustomerTemplateId: '', // e.g., 'template_thankyou'
+    emailjsAdminTemplateId: ''     // e.g., 'template_admin_notice' (optional)
   };
 
   const elements = {
@@ -655,15 +661,92 @@
     }
   }
 
+  // =========================================================================
+  // EMAILJS AUTOMATED NOTIFICATIONS (Customer Thank You & Admin Alerts)
+  // =========================================================================
+  function initEmailJS() {
+    if (window.emailjs && TRADE_CONFIG.emailjsPublicKey) {
+      try {
+        window.emailjs.init({
+          publicKey: TRADE_CONFIG.emailjsPublicKey
+        });
+        console.info('EmailJS initialized successfully.');
+      } catch (err) {
+        console.warn('EmailJS initialization warning:', err);
+      }
+    }
+  }
+
+  async function sendInquiryViaEmailJS(data) {
+    if (!window.emailjs || !TRADE_CONFIG.emailjsPublicKey || !TRADE_CONFIG.emailjsServiceId || !TRADE_CONFIG.emailjsCustomerTemplateId) {
+      return false;
+    }
+    try {
+      const templateParams = {
+        buyer_name: data.buyerName,
+        to_name: data.buyerName,
+        customer_email: data.email,
+        to_email: data.email,
+        reply_to: TRADE_CONFIG.tradeEmail,
+        company: data.company || 'Commercial Importer',
+        phone: data.phone || 'Not Specified',
+        product: data.product,
+        quantity: data.quantity || 'Consignment Trial',
+        incoterm: data.incoterm || 'FOB Mundra Port',
+        destination: data.destination || 'Origin Quote Requested',
+        notes: data.notes || 'Quotation and technical monograph review requested.',
+        trade_email: TRADE_CONFIG.tradeEmail,
+        trade_phone: '+91 70486 32009',
+        website_url: 'https://www.daxatej.com'
+      };
+
+      // 1. Send Auto-Reply Thank-You confirmation to the customer
+      await window.emailjs.send(
+        TRADE_CONFIG.emailjsServiceId,
+        TRADE_CONFIG.emailjsCustomerTemplateId,
+        templateParams
+      );
+
+      // 2. Also send internal notification to Daxatej Trade Desk if admin template ID is configured
+      if (TRADE_CONFIG.emailjsAdminTemplateId) {
+        await window.emailjs.send(
+          TRADE_CONFIG.emailjsServiceId,
+          TRADE_CONFIG.emailjsAdminTemplateId,
+          templateParams
+        );
+      }
+
+      return true;
+    } catch (err) {
+      console.warn('EmailJS dispatch failed:', err);
+      return false;
+    }
+  }
+
   // A. Generate Formal Email RFQ
   async function handleEmailRfq(e) {
     if (e) e.preventDefault();
     const data = collectRfqFormData();
     if (!validateRfqData(data)) return;
 
-    showToast('Saving inquiry and drafting official quotation email...');
+    showToast('Saving inquiry and preparing export quotation...');
     await saveInquiryToSupabase(data, 'email');
 
+    // Attempt automated dispatch via EmailJS if configured
+    let emailJsSuccess = false;
+    if (TRADE_CONFIG.emailjsPublicKey && TRADE_CONFIG.emailjsServiceId && TRADE_CONFIG.emailjsCustomerTemplateId) {
+      showToast('Sending automated confirmation email...');
+      emailJsSuccess = await sendInquiryViaEmailJS(data);
+    }
+
+    if (emailJsSuccess) {
+      showToast('Inquiry submitted! Confirmation email sent to your inbox.');
+      alert(`Thank you, ${data.buyerName}! Your inquiry for ${data.product} has been successfully submitted.\n\nA confirmation email has been sent to ${data.email}. Our commercial export desk in Rajkot will contact you within 24 hours.`);
+      if (elements.rfqForm) elements.rfqForm.reset();
+      return;
+    }
+
+    // Fallback: If EmailJS is not yet configured, draft official email via client mail app
     const subject = encodeURIComponent(`Commercial Export RFQ: ${data.product} - ${data.company || data.buyerName}`);
     const bodyText = [
       `To: Daxatej Global - Export Trade Desk (Rajkot, Gujarat, India)`,
@@ -699,6 +782,11 @@
 
     showToast('Saving inquiry and redirecting to WhatsApp...');
     await saveInquiryToSupabase(data, 'whatsapp');
+
+    // If EmailJS is configured, dispatch customer thank-you confirmation email in background
+    if (TRADE_CONFIG.emailjsPublicKey && TRADE_CONFIG.emailjsServiceId && TRADE_CONFIG.emailjsCustomerTemplateId) {
+      sendInquiryViaEmailJS(data).catch(() => {});
+    }
 
     const message = [
       `*EXPORT INQUIRY - DAXATEJ GLOBAL*`,
@@ -870,6 +958,7 @@
   // 8. BOOTSTRAP APPLICATION
   // =========================================================================
   document.addEventListener('DOMContentLoaded', () => {
+    initEmailJS();
     renderProductCatalog();
     initEventListeners();
   });
