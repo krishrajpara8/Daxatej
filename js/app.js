@@ -321,10 +321,10 @@
     supabaseAnonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ4ZmF5ZWRsam1mdGFkZGdwcWZlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE3NDEzMzEsImV4cCI6MjEwNzMxNzMzMX0.3rLzXwDiXPaFkdq3aSnXLemrvT_Fn9SF5LGkmY8mSdM',
 
     // EmailJS Configuration (Automated Customer Thank You & Team Notifications)
-    emailjsPublicKey: '',          // e.g., 'your_public_key'
-    emailjsServiceId: '',          // e.g., 'service_daxatej'
-    emailjsCustomerTemplateId: '', // e.g., 'template_thankyou'
-    emailjsAdminTemplateId: ''     // e.g., 'template_admin_notice' (optional)
+    emailjsPublicKey: 'j4pvX0MgYrFH0nrS6',
+    emailjsServiceId: 'service_7pxpfw6',
+    emailjsCustomerTemplateId: 'template_6nrtr08',
+    emailjsAdminTemplateId: ''     // Optional: second template ID to notify admin
   };
 
   const elements = {
@@ -685,9 +685,14 @@
       const templateParams = {
         buyer_name: data.buyerName,
         to_name: data.buyerName,
+        name: data.buyerName,
+        user_name: data.buyerName,
         customer_email: data.email,
         to_email: data.email,
+        email: data.email,
+        user_email: data.email,
         reply_to: TRADE_CONFIG.tradeEmail,
+        from_name: 'Daxatej Global Exports',
         company: data.company || 'Commercial Importer',
         phone: data.phone || 'Not Specified',
         product: data.product,
@@ -695,6 +700,7 @@
         incoterm: data.incoterm || 'FOB Mundra Port',
         destination: data.destination || 'Origin Quote Requested',
         notes: data.notes || 'Quotation and technical monograph review requested.',
+        message: `Inquiry for ${data.product}. Target Quantity: ${data.quantity || 'Trial'}. IncoTerm: ${data.incoterm || 'FOB'}. Destination: ${data.destination || 'TBD'}. Notes: ${data.notes || 'None'}`,
         trade_email: TRADE_CONFIG.tradeEmail,
         trade_phone: '+91 70486 32009',
         website_url: 'https://www.daxatej.com'
